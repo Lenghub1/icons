@@ -6,7 +6,6 @@ const { transform } = require("@svgr/core");
 // Load environment variables
 require("dotenv").config();
 
-// Configuration
 const CONFIG = {
   figmaFileId: process.env.FIGMA_FILE_ID || "YOUR_FIGMA_FILE_ID",
   figmaToken: process.env.FIGMA_TOKEN || "YOUR_FIGMA_TOKEN",
@@ -14,7 +13,7 @@ const CONFIG = {
   outputDir: "./src/icons",
   indexFile: "./src/index.js",
   typesFile: "./src/index.d.ts",
-  packageName: "@yourcompany/icon-library",
+  packageName: "leng-icon-library", // ← Changed from '@leng/icon-library'
 };
 
 // Validate configuration

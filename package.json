@@ -1,6 +1,6 @@
 {
-  "name": "@leng/icon-library",
-  "version": "1.0.1",
+  "name": "leng-icon-library",
+  "version": "1.0.0",
   "description": "React icon library auto-synced from Figma",
   "main": "src/index.js",
   "module": "src/index.js",
@@ -18,7 +18,7 @@
     "figma",
     "svg"
   ],
-  "author": "leng",
+  "author": "Leng",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -31,6 +31,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lenghub1/icons"
+    "url": "https://github.com/Lenghub1/icons.git"
   }
 }
