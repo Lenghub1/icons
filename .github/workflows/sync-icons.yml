@@ -12,6 +12,7 @@ on:
 jobs:
   sync-and-publish:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,8 +25,14 @@ jobs:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clean and install dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm cache clean --force
+          npm install
+
+      - name: Manually install Rollup native binary (Linux)
+        run: npm install @rollup/rollup-linux-x64-gnu --save-dev
 
       - name: Sync icons from Figma
         run: npm run sync
