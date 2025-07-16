@@ -1,0 +1,64 @@
+name: Sync Figma Icons & Publish
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # Daily at 2 AM
+  workflow_dispatch: # Manual trigger
+  push:
+    branches: [main]
+    paths:
+      - "scripts/sync-figma-icons.js"
+
+jobs:
+  sync-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync icons from Figma
+        run: npm run sync
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
+          FIGMA_ICON_NODE_ID: ${{ secrets.FIGMA_ICON_NODE_ID }}
+
+      - name: Build library
+        run: npm run build
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit changes
+        if: steps.changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Auto-sync icons from Figma [skip ci]"
+
+      - name: Bump version and publish
+        if: steps.changes.outputs.changes == 'true'
+        run: |
+          npm version patch
+          npm publish
+          git push
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
