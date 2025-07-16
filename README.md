@@ -1,18 +1,18 @@
-# @yourcompany/icon-library
+# leng-icon-library
 
 React icon library automatically synced from Figma.
 
 ## Installation
 
 ```bash
-npm install @yourcompany/icon-library
+npm install leng-icon-library
 ```
 
 ## Usage
 
 ### Individual Icons
 ```jsx
-import { IconDownload, IconDocumentUpload, IconWarning } from '@yourcompany/icon-library';
+import { IconDownload, IconDocumentUpload, IconWarning } from 'leng-icon-library';
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
 
 ### All Icons
 ```jsx
-import { AllIcons } from '@yourcompany/icon-library';
+import { AllIcons } from 'leng-icon-library';
 
 function IconGrid() {
   return (
