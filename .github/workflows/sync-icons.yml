@@ -2,8 +2,8 @@ name: Sync Figma Icons & Publish
 
 on:
   schedule:
-    - cron: "0 2 * * *" # Daily at 2 AM
-  workflow_dispatch: # Manual trigger
+    - cron: "0 2 * * *"
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -30,9 +30,6 @@ jobs:
           rm -rf node_modules package-lock.json
           npm cache clean --force
           npm install
-
-      - name: Manually install Rollup native binary (Linux)
-        run: npm install @rollup/rollup-linux-x64-gnu --save-dev
 
       - name: Sync icons from Figma
         run: npm run sync
