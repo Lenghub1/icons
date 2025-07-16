@@ -1,5 +1,5 @@
 {
-  "name": "@yourcompany/icon-library",
+  "name": "@leng/icon-library",
   "version": "1.0.0",
   "description": "React icon library auto-synced from Figma",
   "main": "src/index.js",
@@ -10,7 +10,6 @@
   ],
   "scripts": {
     "sync": "node scripts/sync-figma-icons.js",
-    "test": "echo \"No tests specified\" && exit 0",
     "prepublishOnly": "npm run sync"
   },
   "keywords": [
@@ -19,7 +18,7 @@
     "figma",
     "svg"
   ],
-  "author": "Your Company",
+  "author": "leng",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -32,6 +31,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourcompany/icon-library.git"
+    "url": "https://github.com/Lenghub1/icons"
   }
 }
