@@ -20,7 +20,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: npm install
@@ -49,11 +48,17 @@ jobs:
           git add .
           git commit -m "Auto-sync icons from Figma [skip ci]"
 
-      - name: Bump version and publish
+      - name: Bump version
         if: steps.changes.outputs.changes == 'true'
-        run: |
-          npm version patch
-          npm publish
-          git push
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm version patch
+
+      - name: Publish to NPM
+        if: steps.changes.outputs.changes == 'true'
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: public
+
+      - name: Push changes to repository
+        if: steps.changes.outputs.changes == 'true'
+        run: git push
