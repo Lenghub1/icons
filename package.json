@@ -2,19 +2,16 @@
   "name": "@yourcompany/icon-library",
   "version": "1.0.0",
   "description": "React icon library auto-synced from Figma",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "files": [
-    "dist/",
     "src/",
     "README.md"
   ],
   "scripts": {
     "sync": "node scripts/sync-figma-icons.js",
-    "build": "rollup -c --bundleConfigAsCjs",
-    "dev": "rollup -c -w --bundleConfigAsCjs",
-    "prepublishOnly": "npm run sync && npm run build"
+    "test": "echo \"No tests specified\" && exit 0",
+    "prepublishOnly": "npm run sync"
   },
   "keywords": [
     "icons",
@@ -29,24 +26,12 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
-    "@babel/preset-env": "^7.23.0",
-    "@babel/preset-react": "^7.23.0",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
     "@svgr/core": "^8.1.0",
-    "@svgr/rollup": "^8.1.0",
     "axios": "^1.6.0",
-    "rollup": "^4.9.6",
-    "rollup-plugin-peer-deps-external": "^2.2.4"
+    "dotenv": "^16.3.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/yourcompany/icon-library.git"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.0"
   }
 }
